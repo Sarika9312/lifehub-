@@ -1,6 +1,4 @@
 require('dotenv').config();
-const https = require('https');
-const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -39,13 +37,6 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// Create HTTPS server
-const options = {
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.crt')
-};
-
-https.createServer(options, app).listen(PORT, () => {
-  console.log(`Server running on https://10.233.251.26:${PORT}`);
-  console.log(`MongoDB connected: 127.0.0.1`);
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

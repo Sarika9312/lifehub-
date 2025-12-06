@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE = 'https://10.233.251.26:5000/api';
+const API_BASE = 'http://localhost:5000/api';
 
 const getHeaders = () => {
   const token = localStorage.getItem('token');

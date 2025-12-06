@@ -1,8 +1,45 @@
 // Budget page
 checkAuth();
 
+const currencySymbols = {
+  USD: '$',
+  EUR: '€',
+  GBP: '£',
+  INR: '₹',
+  AUD: 'A$',
+  CAD: 'C$',
+  SGD: 'S$',
+  AED: 'د.إ'
+};
+
+function getBudgetSettings() {
+  const budgetInput = document.getElementById('budgetAmount');
+  const currencySelect = document.getElementById('currencySelect');
+
+  const savedBudget = parseFloat(localStorage.getItem('budgetAmount'));
+  const savedCurrency = localStorage.getItem('budgetCurrency');
+
+  if (!budgetInput.value) budgetInput.value = savedBudget || 5000;
+  if (!currencySelect.value) currencySelect.value = savedCurrency || 'USD';
+
+  const budget = parseFloat(budgetInput.value) || 0;
+  const currency = currencySelect.value || 'USD';
+
+  localStorage.setItem('budgetAmount', budget);
+  localStorage.setItem('budgetCurrency', currency);
+
+  return { budget, currency };
+}
+
+function formatWithCurrency(amount, currency) {
+  const symbol = currencySymbols[currency] || `${currency} `;
+  return `${symbol}${amount.toFixed(2)}`;
+}
+
 async function loadBudget() {
   try {
+    const { budget, currency } = getBudgetSettings();
+
     const monthInput = document.getElementById('budgetMonth').value;
     if (!monthInput) {
       const now = new Date();
@@ -18,26 +55,30 @@ async function loadBudget() {
     const summary = response.summary || {};
     const total = response.total || 0;
     
-    displayBudgetSummary(total);
-    displayBudgetVisualization(summary);
+    displayBudgetSummary(total, budget, currency);
+    displayBudgetVisualization(summary, currency);
     calculateSavings();
   } catch (error) {
     console.error('Error loading budget:', error);
+    // Fallback to current inputs even if API fails
+    const { budget, currency } = getBudgetSettings();
+    displayBudgetSummary(0, budget, currency);
+    displayBudgetVisualization({}, currency);
+    calculateSavings();
   }
 }
 
-function displayBudgetSummary(spent) {
-  const budget = 5000;
+function displayBudgetSummary(spent, budget, currency) {
   const remaining = budget - spent;
   const percent = Math.round((spent / budget) * 100);
 
-  document.getElementById('totalBudget').textContent = formatCurrency(budget);
-  document.getElementById('totalSpent').textContent = formatCurrency(spent);
-  document.getElementById('remaining').textContent = formatCurrency(Math.max(0, remaining));
+  document.getElementById('totalBudget').textContent = formatWithCurrency(budget, currency);
+  document.getElementById('totalSpent').textContent = formatWithCurrency(spent, currency);
+  document.getElementById('remaining').textContent = formatWithCurrency(Math.max(0, remaining), currency);
   document.getElementById('usagePercent').textContent = Math.min(100, percent) + '%';
 }
 
-function displayBudgetVisualization(summary) {
+function displayBudgetVisualization(summary, currency) {
   const container = document.getElementById('budgetVisualization');
   
   if (!summary || Object.keys(summary).length === 0) {
@@ -64,7 +105,7 @@ function displayBudgetVisualization(summary) {
         <div class="bar-label">${cat}</div>
         <div class="bar">
           <div class="bar-fill" style="width: ${percentage}%; background: ${colors[cat] || '#3498db'}">
-            ${formatCurrency(amount)}
+            ${formatWithCurrency(amount, currency)}
           </div>
         </div>
       </div>
@@ -74,10 +115,10 @@ function displayBudgetVisualization(summary) {
 
 function calculateSavings() {
   const savingsGoal = parseFloat(document.getElementById('savingsGoal').value) || 0;
-  const budget = 5000;
+  const { budget, currency } = getBudgetSettings();
   const projected = Math.max(0, budget - savingsGoal);
   
-  document.getElementById('projectedSavings').textContent = formatCurrency(projected);
+  document.getElementById('projectedSavings').textContent = formatWithCurrency(projected, currency);
 }
 
 // Initialize
@@ -88,5 +129,13 @@ document.getElementById('budgetMonth').value = `${year}-${month}`;
 
 document.getElementById('budgetMonth').addEventListener('change', loadBudget);
 document.getElementById('savingsGoal').addEventListener('change', calculateSavings);
+document.getElementById('budgetAmount').addEventListener('input', () => {
+  getBudgetSettings();
+  loadBudget();
+});
+document.getElementById('currencySelect').addEventListener('change', () => {
+  getBudgetSettings();
+  loadBudget();
+});
 
 loadBudget();

@@ -31,8 +31,27 @@
       </div>
 
       <div class="controls">
-        <label>Select Month:</label>
-        <input type="month" id="budgetMonth" onchange="loadBudget()">
+        <div class="control-group">
+          <label for="budgetMonth">Select Month:</label>
+          <input type="month" id="budgetMonth" onchange="loadBudget()">
+        </div>
+        <div class="control-group">
+          <label for="budgetAmount">Budget Amount</label>
+          <input type="number" id="budgetAmount" min="0" step="100" value="5000">
+        </div>
+        <div class="control-group">
+          <label for="currencySelect">Currency</label>
+          <select id="currencySelect">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="INR">INR (₹)</option>
+            <option value="AUD">AUD (A$)</option>
+            <option value="CAD">CAD (C$)</option>
+            <option value="SGD">SGD (S$)</option>
+            <option value="AED">AED (د.إ)</option>
+          </select>
+        </div>
       </div>
 
       <div class="budget-summary">
