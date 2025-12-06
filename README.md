@@ -55,6 +55,47 @@ LifeHub is a full-stack web application designed to help families and individual
 - **User Profile**: Manage personal settings
 - **Authentication**: Secure login/signup with JWT tokens
 
+## Quick Start
+
+### Option 1: One-Click Start (Windows)
+1. Double-click `start-all.bat` in the project root
+2. Open `http://localhost:8000` in your browser
+3. Sign up and start using LifeHub!
+
+### Option 2: Manual Start
+
+**Prerequisites:**
+- Node.js (v14+)
+- MongoDB (local or Atlas)
+- Python (for frontend server)
+
+**Steps:**
+
+1. **Start MongoDB**:
+```bash
+mongod
+```
+
+2. **Start Backend** (new terminal):
+```bash
+cd backend
+npm install
+npm start
+```
+Backend runs on `http://localhost:5000`
+
+3. **Start Frontend** (another new terminal):
+```bash
+cd frontend
+python -m http.server 8000
+```
+Frontend runs on `http://localhost:8000`
+
+4. **Open in Browser**:
+- Navigate to `http://localhost:8000`
+- Sign up with email and password
+- Start using LifeHub!
+
 ## Project Structure
 
 ```

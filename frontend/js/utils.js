@@ -1,5 +1,22 @@
 // Utility functions
 
+const currencySymbols = {
+  USD: '$',
+  EUR: '€',
+  GBP: '£',
+  INR: '₹',
+  AUD: 'A$',
+  CAD: 'C$',
+  SGD: 'S$',
+  AED: 'د.إ',
+  JPY: '¥',
+  CHF: 'CHF'
+};
+
+function getUserCurrency() {
+  return localStorage.getItem('budgetCurrency') || 'USD';
+}
+
 function formatDate(date) {
   const d = new Date(date);
   const month = String(d.getMonth() + 1).padStart(2, '0');
@@ -18,7 +35,9 @@ function formatDateDisplay(date) {
 }
 
 function formatCurrency(amount) {
-  return '$' + amount.toFixed(2);
+  const currency = getUserCurrency();
+  const symbol = currencySymbols[currency] || currency;
+  return `${symbol}${amount.toFixed(2)}`;
 }
 
 function formatMonthYear(date) {

@@ -10,7 +10,14 @@ async function loadDashboard() {
     // Get user info
     const userRes = await authAPI.getMe();
     const userName = userRes.user.name;
-    document.getElementById('userInfo').innerHTML = `Welcome, ${userName}`;
+    const userCurrency = userRes.user.currency;
+    
+    document.getElementById('userInfo').innerHTML = `Welcome, ${userName} (${userCurrency})`;
+    
+    // Store user's currency for global use
+    if (userCurrency) {
+      localStorage.setItem('budgetCurrency', userCurrency);
+    }
 
     // Get monthly expenses
     const expenseRes = await expensesAPI.getAll(currentMonth, currentYear);

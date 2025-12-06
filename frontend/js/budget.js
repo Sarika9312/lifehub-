@@ -1,29 +1,18 @@
 // Budget page
 checkAuth();
 
-const currencySymbols = {
-  USD: '$',
-  EUR: '€',
-  GBP: '£',
-  INR: '₹',
-  AUD: 'A$',
-  CAD: 'C$',
-  SGD: 'S$',
-  AED: 'د.إ'
-};
-
 function getBudgetSettings() {
   const budgetInput = document.getElementById('budgetAmount');
   const currencySelect = document.getElementById('currencySelect');
 
   const savedBudget = parseFloat(localStorage.getItem('budgetAmount'));
-  const savedCurrency = localStorage.getItem('budgetCurrency');
+  const savedCurrency = localStorage.getItem('budgetCurrency') || getUserCurrency();
 
   if (!budgetInput.value) budgetInput.value = savedBudget || 5000;
-  if (!currencySelect.value) currencySelect.value = savedCurrency || 'USD';
+  if (!currencySelect.value) currencySelect.value = savedCurrency;
 
   const budget = parseFloat(budgetInput.value) || 0;
-  const currency = currencySelect.value || 'USD';
+  const currency = currencySelect.value || savedCurrency;
 
   localStorage.setItem('budgetAmount', budget);
   localStorage.setItem('budgetCurrency', currency);

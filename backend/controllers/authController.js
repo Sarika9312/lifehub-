@@ -9,7 +9,7 @@ const signToken = (id) => {
 
 exports.signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, country, currency } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Please provide name, email, and password' });
@@ -24,6 +24,8 @@ exports.signup = async (req, res) => {
       name,
       email,
       password,
+      country: country || 'US',
+      currency: currency || 'USD',
     });
 
     const token = signToken(user._id);
@@ -35,6 +37,8 @@ exports.signup = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        country: user.country,
+        currency: user.currency,
       },
     });
   } catch (error) {
@@ -69,6 +73,8 @@ exports.login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        country: user.country,
+        currency: user.currency,
       },
     });
   } catch (error) {

@@ -17,6 +17,14 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6,
   },
+  country: {
+    type: String,
+    default: 'US',
+  },
+  currency: {
+    type: String,
+    default: 'USD',
+  },
   theme: {
     type: String,
     default: 'light',
