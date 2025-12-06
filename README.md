@@ -393,6 +393,9 @@ MIT License - Free to use and modify
 For issues or questions, check the code comments and documentation.
 
 ---
+## Auther
+Sarika Panchalwar
+
 
 **Created with ❤️ for personal home management**
 
