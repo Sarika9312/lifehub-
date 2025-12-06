@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - LifeHub</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">🏠 LifeHub</div>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
+        <li><a href="expenses.html">💰 Expenses</a></li>
+        <li><a href="bills.html">📋 Bills</a></li>
+        <li><a href="medicine.html">💊 Medicines</a></li>
+        <li><a href="groceries.html">🛒 Groceries</a></li>
+        <li><a href="tasks.html">✓ Tasks</a></li>
+        <li><a href="documents.html">📄 Documents</a></li>
+        <li><a href="budget.html">📈 Budget</a></li>
+        <li><a href="notes.html">📝 Notes</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+      <button onclick="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Dashboard</h1>
+        <div class="user-info" id="userInfo"></div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="card">
+          <h3>💰 Monthly Expense</h3>
+          <p id="monthlyExpense" class="large-text">$0</p>
+          <a href="expenses.html" class="card-link">View Expenses →</a>
+        </div>
+
+        <div class="card">
+          <h3>💳 Bills Due Soon</h3>
+          <p id="billsDue" class="large-text">0</p>
+          <a href="bills.html" class="card-link">View Bills →</a>
+        </div>
+
+        <div class="card">
+          <h3>💊 Next Medicine</h3>
+          <p id="nextMedicine" class="large-text">-</p>
+          <a href="medicine.html" class="card-link">View Schedule →</a>
+        </div>
+
+        <div class="card">
+          <h3>🛒 Low Stock Items</h3>
+          <p id="lowStock" class="large-text">0</p>
+          <a href="groceries.html" class="card-link">View Groceries →</a>
+        </div>
+
+        <div class="card">
+          <h3>✓ Today's Tasks</h3>
+          <p id="todaysTasks" class="large-text">0</p>
+          <a href="tasks.html" class="card-link">View Tasks →</a>
+        </div>
+
+        <div class="card">
+          <h3>📊 Budget Usage</h3>
+          <p id="budgetUsage" class="large-text">0%</p>
+          <a href="budget.html" class="card-link">View Budget →</a>
+        </div>
+      </div>
+
+      <div class="recent-section">
+        <h2>Recent Expenses</h2>
+        <div id="recentExpenses" class="list-container">
+          <p>Loading...</p>
+        </div>
+      </div>
+
+      <div class="recent-section">
+        <h2>Upcoming Bills</h2>
+        <div id="upcomingBills" class="list-container">
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

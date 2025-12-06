@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - LifeHub</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">🏠 LifeHub</div>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="expenses.html">💰 Expenses</a></li>
+        <li><a href="bills.html">📋 Bills</a></li>
+        <li><a href="medicine.html">💊 Medicines</a></li>
+        <li><a href="groceries.html">🛒 Groceries</a></li>
+        <li><a href="tasks.html">✓ Tasks</a></li>
+        <li><a href="documents.html">📄 Documents</a></li>
+        <li><a href="budget.html">📈 Budget</a></li>
+        <li><a href="notes.html">📝 Notes</a></li>
+        <li><a href="settings.html" class="active">⚙️ Settings</a></li>
+      </ul>
+      <button onclick="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Settings</h1>
+      </div>
+
+      <div class="settings-section">
+        <h2>Profile Settings</h2>
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="settingsName">Full Name</label>
+            <input type="text" id="settingsName" name="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email (Read-only)</label>
+            <input type="email" id="email" readonly>
+          </div>
+          <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+      </div>
+
+      <div class="settings-section">
+        <h2>Appearance</h2>
+        <div class="form-group">
+          <label for="themeSelect">Theme</label>
+          <select id="themeSelect" onchange="changeTheme()">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h2>Account Actions</h2>
+        <button onclick="changePassword()" class="btn btn-warning">Change Password</button>
+        <button onclick="deleteAccount()" class="btn btn-danger">Delete Account</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks - LifeHub</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">🏠 LifeHub</div>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="expenses.html">💰 Expenses</a></li>
+        <li><a href="bills.html">📋 Bills</a></li>
+        <li><a href="medicine.html">💊 Medicines</a></li>
+        <li><a href="groceries.html">🛒 Groceries</a></li>
+        <li><a href="tasks.html" class="active">✓ Tasks</a></li>
+        <li><a href="documents.html">📄 Documents</a></li>
+        <li><a href="budget.html">📈 Budget</a></li>
+        <li><a href="notes.html">📝 Notes</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+      <button onclick="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Family Tasks</h1>
+      </div>
+
+      <div class="add-form">
+        <h3>Create New Task</h3>
+        <form id="taskForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="title">Task Title</label>
+              <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input type="text" id="description" name="description">
+            </div>
+            <div class="form-group">
+              <label for="assignedTo">Assigned To</label>
+              <input type="text" id="assignedTo" name="assignedTo" required>
+            </div>
+            <div class="form-group">
+              <label for="taskDueDate">Due Date</label>
+              <input type="date" id="taskDueDate" name="dueDate" required>
+            </div>
+            <div class="form-group">
+              <label for="taskPriority">Priority</label>
+              <select id="taskPriority" name="priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="taskCategory">Category</label>
+              <select id="taskCategory" name="category">
+                <option value="Household">Household</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Health">Health</option>
+                <option value="Financial">Financial</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Task</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-button active" onclick="filterTasks('pending')">Pending</button>
+        <button class="tab-button" onclick="filterTasks('completed')">Completed</button>
+      </div>
+
+      <div class="list-section">
+        <h2>Tasks</h2>
+        <div id="tasksList" class="list-container">
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/tasks.js"></script>
+</body>
+</html>

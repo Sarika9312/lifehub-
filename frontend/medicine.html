@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicines - LifeHub</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">🏠 LifeHub</div>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="expenses.html">💰 Expenses</a></li>
+        <li><a href="bills.html">📋 Bills</a></li>
+        <li><a href="medicine.html" class="active">💊 Medicines</a></li>
+        <li><a href="groceries.html">🛒 Groceries</a></li>
+        <li><a href="tasks.html">✓ Tasks</a></li>
+        <li><a href="documents.html">📄 Documents</a></li>
+        <li><a href="budget.html">📈 Budget</a></li>
+        <li><a href="notes.html">📝 Notes</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+      <button onclick="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Medicines & Dosage Schedule</h1>
+      </div>
+
+      <div class="add-form">
+        <h3>Add New Medicine</h3>
+        <form id="medicineForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="medName">Medicine Name</label>
+              <input type="text" id="medName" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="dosage">Dosage</label>
+              <input type="text" id="dosage" name="dosage" placeholder="e.g., 500mg" required>
+            </div>
+            <div class="form-group">
+              <label for="frequency">Frequency</label>
+              <select id="frequency" name="frequency" required>
+                <option value="Once daily">Once daily</option>
+                <option value="Twice daily">Twice daily</option>
+                <option value="Thrice daily">Thrice daily</option>
+                <option value="Every 4 hours">Every 4 hours</option>
+                <option value="Every 6 hours">Every 6 hours</option>
+                <option value="Every 8 hours">Every 8 hours</option>
+                <option value="As needed">As needed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input type="date" id="startDate" name="startDate">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Medicine</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="list-section">
+        <h2>Active Medicines</h2>
+        <div id="medicinesList" class="list-container">
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/medicine.js"></script>
+</body>
+</html>

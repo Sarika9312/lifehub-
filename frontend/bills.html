@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bills - LifeHub</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">🏠 LifeHub</div>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="expenses.html">💰 Expenses</a></li>
+        <li><a href="bills.html" class="active">📋 Bills</a></li>
+        <li><a href="medicine.html">💊 Medicines</a></li>
+        <li><a href="groceries.html">🛒 Groceries</a></li>
+        <li><a href="tasks.html">✓ Tasks</a></li>
+        <li><a href="documents.html">📄 Documents</a></li>
+        <li><a href="budget.html">📈 Budget</a></li>
+        <li><a href="notes.html">📝 Notes</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+      <button onclick="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Bills</h1>
+      </div>
+
+      <div class="add-form">
+        <h3>Add New Bill</h3>
+        <form id="billForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="billType">Type</label>
+              <select id="billType" name="type" required>
+                <option value="Electricity">Electricity</option>
+                <option value="Water">Water</option>
+                <option value="Internet">Internet</option>
+                <option value="Gas">Gas</option>
+                <option value="Phone">Phone</option>
+                <option value="Insurance">Insurance</option>
+                <option value="Rent">Rent</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="billAmount">Amount ($)</label>
+              <input type="number" id="billAmount" name="amount" step="0.01" required>
+            </div>
+            <div class="form-group">
+              <label for="dueDate">Due Date</label>
+              <input type="date" id="dueDate" name="dueDate" required>
+            </div>
+            <div class="form-group">
+              <label for="billNotes">Notes</label>
+              <input type="text" id="billNotes" name="notes">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Bill</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="alerts-section">
+        <div id="overdueAlerts" class="alert-box"></div>
+        <div id="dueSoonAlerts" class="alert-box"></div>
+      </div>
+
+      <div class="summary-box">
+        <h3>Bills Summary</h3>
+        <p>Total Due: <strong id="totalDue">$0</strong></p>
+      </div>
+
+      <div class="list-section">
+        <h2>All Bills</h2>
+        <div id="billsList" class="list-container">
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/bills.js"></script>
+</body>
+</html>

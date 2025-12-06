@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget - LifeHub</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">🏠 LifeHub</div>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="expenses.html">💰 Expenses</a></li>
+        <li><a href="bills.html">📋 Bills</a></li>
+        <li><a href="medicine.html">💊 Medicines</a></li>
+        <li><a href="groceries.html">🛒 Groceries</a></li>
+        <li><a href="tasks.html">✓ Tasks</a></li>
+        <li><a href="documents.html">📄 Documents</a></li>
+        <li><a href="budget.html" class="active">📈 Budget</a></li>
+        <li><a href="notes.html">📝 Notes</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+      <button onclick="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Monthly Budget Planner</h1>
+      </div>
+
+      <div class="controls">
+        <label>Select Month:</label>
+        <input type="month" id="budgetMonth" onchange="loadBudget()">
+      </div>
+
+      <div class="budget-summary">
+        <div class="budget-card">
+          <h3>Total Budget</h3>
+          <p id="totalBudget" class="large-text">$0</p>
+        </div>
+        <div class="budget-card">
+          <h3>Total Spent</h3>
+          <p id="totalSpent" class="large-text">$0</p>
+        </div>
+        <div class="budget-card">
+          <h3>Remaining</h3>
+          <p id="remaining" class="large-text">$0</p>
+        </div>
+        <div class="budget-card">
+          <h3>Usage %</h3>
+          <p id="usagePercent" class="large-text">0%</p>
+        </div>
+      </div>
+
+      <div class="budget-chart">
+        <h3>Spending by Category</h3>
+        <div id="budgetVisualization"></div>
+      </div>
+
+      <div class="budget-goals">
+        <h3>Savings Calculator</h3>
+        <div class="form-group">
+          <label for="savingsGoal">Monthly Savings Goal ($)</label>
+          <input type="number" id="savingsGoal" min="0" step="100" onchange="calculateSavings()">
+        </div>
+        <p>Projected Savings: <strong id="projectedSavings">$0</strong></p>
+      </div>
+
+      <div class="category-breakdown">
+        <h3>Budget by Category</h3>
+        <div id="categoryBreakdown"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/budget.js"></script>
+</body>
+</html>

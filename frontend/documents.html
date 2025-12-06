@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documents - LifeHub</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">🏠 LifeHub</div>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="expenses.html">💰 Expenses</a></li>
+        <li><a href="bills.html">📋 Bills</a></li>
+        <li><a href="medicine.html">💊 Medicines</a></li>
+        <li><a href="groceries.html">🛒 Groceries</a></li>
+        <li><a href="tasks.html">✓ Tasks</a></li>
+        <li><a href="documents.html" class="active">📄 Documents</a></li>
+        <li><a href="budget.html">📈 Budget</a></li>
+        <li><a href="notes.html">📝 Notes</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+      <button onclick="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Important Documents</h1>
+      </div>
+
+      <div class="add-form">
+        <h3>Upload Document</h3>
+        <form id="documentForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="docName">Document Name</label>
+              <input type="text" id="docName" name="filename" required>
+            </div>
+            <div class="form-group">
+              <label for="docCategory">Category</label>
+              <select id="docCategory" name="category">
+                <option value="Identification">Identification</option>
+                <option value="Financial">Financial</option>
+                <option value="Medical">Medical</option>
+                <option value="Property">Property</option>
+                <option value="Insurance">Insurance</option>
+                <option value="Legal">Legal</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="docTags">Tags (comma separated)</label>
+              <input type="text" id="docTags" name="tags" placeholder="e.g., urgent, important">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Document</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="controls">
+        <div class="filter-group">
+          <label>Search Documents:</label>
+          <input type="text" id="searchQuery" placeholder="Search by name, tags, category...">
+          <button onclick="searchDocuments()" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+
+      <div class="list-section">
+        <h2>Document Library</h2>
+        <div id="documentsList" class="list-container">
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/documents.js"></script>
+</body>
+</html>

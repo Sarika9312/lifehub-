@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expenses - LifeHub</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="logo">🏠 LifeHub</div>
+      <ul class="nav-menu">
+        <li><a href="dashboard.html">📊 Dashboard</a></li>
+        <li><a href="expenses.html" class="active">💰 Expenses</a></li>
+        <li><a href="bills.html">📋 Bills</a></li>
+        <li><a href="medicine.html">💊 Medicines</a></li>
+        <li><a href="groceries.html">🛒 Groceries</a></li>
+        <li><a href="tasks.html">✓ Tasks</a></li>
+        <li><a href="documents.html">📄 Documents</a></li>
+        <li><a href="budget.html">📈 Budget</a></li>
+        <li><a href="notes.html">📝 Notes</a></li>
+        <li><a href="settings.html">⚙️ Settings</a></li>
+      </ul>
+      <button onclick="logout()" class="btn btn-danger">Logout</button>
+    </nav>
+
+    <div class="main-content">
+      <div class="header">
+        <h1>Expenses</h1>
+      </div>
+
+      <div class="controls">
+        <div class="filter-group">
+          <label>Category:</label>
+          <select id="categoryFilter">
+            <option value="All">All</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Health">Health</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Month:</label>
+          <input type="month" id="monthFilter">
+        </div>
+        <button onclick="filterExpenses()" class="btn btn-primary">Filter</button>
+      </div>
+
+      <div class="add-form">
+        <h3>Add New Expense</h3>
+        <form id="expenseForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="amount">Amount ($)</label>
+              <input type="number" id="amount" name="amount" step="0.01" required>
+            </div>
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select id="category" name="category" required>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Health">Health</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+              <label for="notes">Notes</label>
+              <input type="text" id="notes" name="notes">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Expense</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="summary-box">
+        <h3>Monthly Summary</h3>
+        <div id="categorySummary" class="category-bars"></div>
+        <p>Total: <strong id="totalExpense">$0</strong></p>
+      </div>
+
+      <div class="list-section">
+        <h2>Expense List</h2>
+        <div id="expensesList" class="list-container">
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/expenses.js"></script>
+</body>
+</html>
